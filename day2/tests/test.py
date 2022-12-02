@@ -81,6 +81,26 @@ class Day2TestCase(unittest.TestCase):
             # Then
             self.assertEqual(expected, actual, test_case)
 
+    """
+    Given an encrypted_shape (A,B,C | X,Y,Z) parse shape should return correct shape
+    """
+    def test_given_encrypted_shape__parse_shape__should_return_correct_shape(self):
+        # Given
+        param_list = [
+            ('A', main.Shape.ROCK, 'Test case: A -> Rock'),
+            ('X', main.Shape.ROCK, 'Test case: X -> Rock'),
+            ('B', main.Shape.PAPER, 'Test case: B -> Paper'),
+            ('Y', main.Shape.PAPER, 'Test case: Y -> Paper'),
+            ('C', main.Shape.SCISSORS, 'Test case: C -> Scissors'),
+            ('Z', main.Shape.SCISSORS, 'Test case: Z -> Scissors')
+        ]
+        for encrypted_shape, expected, test_case in param_list:
+            # When
+            actual = main.parse_shape(encrypted_shape)
+
+            # Then
+            self.assertEqual(expected, actual, test_case)
+
 
 if __name__ == '__main__':
     unittest.main()
