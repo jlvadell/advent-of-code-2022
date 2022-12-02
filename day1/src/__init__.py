@@ -1,3 +1,7 @@
 import main
 
-main.solve_p1('../data/input.txt')
+data = main.load_input_data('../data/input.txt')
+
+main.solve_p1(data)
+
+main.solve_p2(data)
