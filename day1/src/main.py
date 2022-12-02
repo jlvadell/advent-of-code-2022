@@ -10,6 +10,7 @@ def load_input_data(file):
                 calories.append(int(line))
     return elves_calories
 
+
 def find_total_n_calories(data, n=1):
     if n == 1:
         return max(data)
