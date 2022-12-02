@@ -101,6 +101,19 @@ class Day2TestCase(unittest.TestCase):
             # Then
             self.assertEqual(expected, actual, test_case)
 
+    """
+    Given an input parse and return list of plays (opponent shape vs player shape)
+    """
+    def test_given_input__load_plays__should_return_list_of_parsed_plays(self):
+        # Given
+        input_test_file = 'data/test_input_1.txt'
+        # When
+        actual = main.load_plays(input_test_file)
+        expected = [(main.Shape.ROCK, main.Shape.PAPER), (main.Shape.PAPER, main.Shape.ROCK), (main.Shape.SCISSORS, main.Shape.SCISSORS)]
+
+        # Then
+        self.assertEqual(expected, actual)
+
 
 if __name__ == '__main__':
     unittest.main()
