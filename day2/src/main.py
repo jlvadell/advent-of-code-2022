@@ -45,3 +45,12 @@ def parse_shape(encrypted_shape):
             return Shape.PAPER
         case _:
             return Shape.SCISSORS
+
+def calculate_total_score(plays):
+    total = 0
+    for play in plays:
+        total = total + calculate_score(play[0], play[1])
+    return total
+
+def solve_part_1(data):
+    print("Total score: {0}".format(calculate_total_score(data)))

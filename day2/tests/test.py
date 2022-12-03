@@ -3,7 +3,6 @@ from day2.src import main
 
 
 class Day2TestCase(unittest.TestCase):
-
     """
     Given a play (opponent shape vs player shape) calculate the score (result only) for all the posible outcomes
     """
@@ -114,6 +113,53 @@ class Day2TestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected, actual)
 
+    """
+    Calculate total score should return the correct score
+    """
+    def test__calculate_total_score__should_return_correct_score(self):
+        # Given
+        plays = [(main.Shape.ROCK, main.Shape.SCISSORS), (main.Shape.PAPER, main.Shape.SCISSORS)]
+
+        # When
+        actual = main.calculate_total_score(plays)
+        expected = 12
+
+        # Then
+        self.assertEqual(expected, actual)
+
+    """
+    Shape function win_against should return the correct shape
+    """
+    def test_wining_shape(self):
+        # Given
+        param_list = [
+            (main.Shape.ROCK, main.Shape.SCISSORS, 'Test case: Rock --> Scissors'),
+            (main.Shape.PAPER, main.Shape.ROCK, 'Test case: Paper -> Rock'),
+            (main.Shape.SCISSORS, main.Shape.PAPER, 'Test case: Scissors -> Paper'),
+        ]
+        for shape, expected, test_case in param_list:
+            # When
+            actual = shape.win_against()
+
+            # Then
+            self.assertEqual(expected, actual, test_case)
+
+    """
+    Shape function lose_against should return the correct shape
+    """
+    def test_losing_shape(self):
+        # Given
+        param_list = [
+            (main.Shape.ROCK, main.Shape.PAPER, 'Test case: Rock --> Paper'),
+            (main.Shape.PAPER, main.Shape.SCISSORS, 'Test case: Paper -> Scissors'),
+            (main.Shape.SCISSORS, main.Shape.ROCK, 'Test case: Scissors -> Rock'),
+        ]
+        for shape, expected, test_case in param_list:
+            # When
+            actual = shape.lose_against()
+
+            # Then
+            self.assertEqual(expected, actual, test_case)
 
 if __name__ == '__main__':
     unittest.main()
