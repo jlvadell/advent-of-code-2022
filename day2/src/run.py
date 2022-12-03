@@ -1,9 +1,10 @@
 import main
 
 print("Day 2")
-data = main.load_plays('../data/input.txt')
+file = '../data/input.txt'
 print("Part One:")
-main.solve_part_1(data)
+main.solve_part_1(file)
 print("Part Two:")
+main.solve_part_2(file)
 
 print("-----------------------------------------------------------")
