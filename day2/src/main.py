@@ -6,6 +6,31 @@ class Shape(Enum):
     PAPER = 2
     SCISSORS = 3
 
+    """
+    Return the shape that shape win against
+    """
+    def win_against(self):
+        match self.value:
+            case self.ROCK.value:
+                return self.SCISSORS
+            case self.PAPER.value:
+                return self.ROCK
+            case _:
+                return self.PAPER
+
+    """
+    Return the shape that shape lose against
+    """
+    def lose_against(self):
+        match self.value:
+            case self.ROCK.value:
+                return self.PAPER
+            case self.PAPER.value:
+                return self.SCISSORS
+            case _:
+                return self.ROCK
+
+
 
 def calculate_score(opponent, player):
     score_result = calculate_result_score(opponent, player)
@@ -45,6 +70,17 @@ def parse_shape(encrypted_shape):
             return Shape.PAPER
         case _:
             return Shape.SCISSORS
+
+
+def parse_play(opponent_shape, player_play):
+    match player_play:
+        case 'X':
+            return opponent_shape.win_against()
+        case 'Y':
+            return opponent_shape
+        case _:
+            return opponent_shape.lose_against()
+
 
 def calculate_total_score(plays):
     total = 0
