@@ -26,5 +26,5 @@ This year puzzles will be solved using python 3.10, each puzzle will be an indep
 
 
 ## Progress Tracking
-### Stars Obtained: 4 of 50 → ![4%](https://progress-bar.dev/8)
-### Days Solved: 2 of 25 → ![4%](https://progress-bar.dev/8)
+### Stars Obtained: 4 of 50 → ![8%](https://progress-bar.dev/8)
+### Days Solved: 2 of 25 → ![8%](https://progress-bar.dev/8)
