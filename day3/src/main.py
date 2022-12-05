@@ -8,18 +8,21 @@ def load_rucksacks(input_file):
 
 
 def find_misplaced_items(rucksack):
-    misplaced_items = set()
-    compartment_1 = rucksack[0]
+    compartment_1_items = set(rucksack[0])
     compartment_2_items = set(rucksack[1])
-    for item in compartment_2_items:
-        if item in compartment_1:
-            misplaced_items.add(item)
-
-    return misplaced_items
+    return compartment_1_items & compartment_2_items
 
 
 def get_priority(item: str):
     return ord(item)-38 if item.isupper() else ord(item)-96
+
+
+def find_group_badge(rucksacks):
+    rucksack_1_items = set(''.join(rucksacks[0]))
+    rucksack_2_items = set(''.join(rucksacks[1]))
+    rucksack_3_items = set(''.join(rucksacks[2]))
+
+    return (rucksack_1_items & rucksack_2_items & rucksack_3_items).pop()
 
 
 def solve_part_1(input_file):
@@ -27,6 +30,16 @@ def solve_part_1(input_file):
     total_priority = 0
     for rucksack in rucksacks:
         total_priority = total_priority + sum([get_priority(x) for x in find_misplaced_items(rucksack)])
+
+    return print("Total priority is: {0}".format(total_priority))
+
+
+def solve_part_2(input_file):
+    rucksacks = load_rucksacks(input_file)
+    total_priority = 0
+    for i in range(0, len(rucksacks), 3):
+        rucksacks_group = rucksacks[i:i+3]
+        total_priority = total_priority + get_priority(find_group_badge(rucksacks_group))
 
     return print("Total priority is: {0}".format(total_priority))
 

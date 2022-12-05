@@ -61,5 +61,21 @@ class Day3TestCase(unittest.TestCase):
             self.assertEqual(expected, actual, 'test item {0}'.format(item))
 
 
+
+    """
+    Given a rucksack group find_group_badge should return correct group badge
+    """
+    def test_given_a_rucksack_group__find_group_badge__should_return_badge(self):
+        # Given
+        group = [['abCdef', 'uvwxyz'], ['abCdeF', 'uvwxyZ'], ['rnpChgt', 'UVWXYz']]
+
+        # When
+        actual = main.find_group_badge(group)
+        expected = 'C'
+
+        # Then
+        self.assertEqual(expected, actual)
+
+
 if __name__ == '__main__':
     unittest.main()
