@@ -12,15 +12,15 @@ def is_fully_overlapping(section: set, another_section: set):
     return section.issubset(another_section) or another_section.issubset(section)
 
 
-def load_data(file):
-    with open(file, 'r') as input_data:
+def load_data(input_file):
+    with open(input_file, 'r') as input_data:
         data = []
         for line in input_data.readlines():
             data.append(parse_assignments(line))
         return data
 
-def solve_part_1(file):
-    data = load_data(file)
+def solve_part_1(input_file):
+    data = load_data(input_file)
     total = 0
     for sections in data:
         total = total + is_fully_overlapping(sections[0], sections[1])
