@@ -13,8 +13,8 @@ class Day5TestCase(unittest.TestCase):
         move_instruction = 'move 5 from 2 to 1'
 
         # When
-        actual = main.parse_instructions(move_instruction)
-        expected = main.CraneInstructionMove(5,2,1)
+        actual = main.parse_instructions(move_instruction, main.CraneModel.CRATE_MOVER_9000)
+        expected = main.CraneInstruction(5, 2, 1)
 
         # Then
         self.assertEqual(expected, actual)
@@ -42,17 +42,17 @@ class Day5TestCase(unittest.TestCase):
         input_file = 'data/test_input_1.txt'
 
         # When
-        actual_containers, actual_instructions = main.load_data(input_file)
+        actual_containers, actual_instructions = main.load_data(input_file, main.CraneModel.CRATE_MOVER_9000)
         expected_containers = [
             deque(['Z', 'N']),
             deque(['M', 'C', 'D']),
             deque(['P',])
         ]
         expected_instructions = [
-            main.CraneInstructionMove(1, 2, 1),
-            main.CraneInstructionMove(3, 1, 3),
-            main.CraneInstructionMove(2, 2, 1),
-            main.CraneInstructionMove(1, 1, 2)
+            main.CraneInstructionCrateMover9000(1, 2, 1),
+            main.CraneInstructionCrateMover9000(3, 1, 3),
+            main.CraneInstructionCrateMover9000(2, 2, 1),
+            main.CraneInstructionCrateMover9000(1, 1, 2)
         ]
         # Then
         self.assertEqual(expected_containers, actual_containers)
@@ -64,7 +64,7 @@ class Day5TestCase(unittest.TestCase):
         """
         # Given
         containers = [deque(['A','B','C']), deque(['A']), deque(['A','B','C','C','B'])]
-        instruction = main.CraneInstructionMove(2, 3, 2)
+        instruction = main.CraneInstructionCrateMover9000(2, 3, 2)
 
         # When
         instruction.perform(containers)
