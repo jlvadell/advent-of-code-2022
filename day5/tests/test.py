@@ -79,7 +79,7 @@ class Day5TestCase(unittest.TestCase):
         """
         # Given
         test_file = 'data/test_input_1.txt'
-        
+
         # When
         actual = main.solve_part_1(test_file)
         expected = 'CMZ'

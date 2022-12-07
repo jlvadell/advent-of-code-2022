@@ -29,8 +29,7 @@ class CraneInstructionMove(CraneInstruction):
 
 def load_data(input_file):
     with open(input_file, 'r') as input_data:
-        instructions = []
-        containers = [deque(), deque(), deque()]
+        containers, instructions = [], []
         reading_instructions = False
         for line in input_data.readlines():
             if line == '\n':
@@ -42,7 +41,9 @@ def load_data(input_file):
                 instructions.append(parse_instructions(line))
             else:
                 container_data = parse_containers(line)
-                for i in range(0, 3):
+                for i in range(0, len(container_data)):
+                    if i > len(containers)-1:
+                        containers.append(deque())
                     if container_data[i] != '':
                         containers[i].appendleft(container_data[i])
         return containers, instructions
@@ -56,7 +57,7 @@ def parse_instructions(instruction: str):
 
 def parse_containers(container_data: str):
     parsed_data = []
-    for i in range(0,12,4):
+    for i in range(0,len(container_data),4):
         container_content = container_data[i:i+4]
         parsed_data.append(re.sub('[\[\]\s\n]+', '', container_content))
     return parsed_data
