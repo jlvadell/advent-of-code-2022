@@ -101,7 +101,7 @@ class Day5TestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected, containers)
 
-    def test__solve_part_1_should_return_correct_solution(self):
+    def test__solve_part_1__should_return_correct_solution(self):
         """
         Given the example test data solve_part_1 should return correct solution
         """
@@ -111,6 +111,20 @@ class Day5TestCase(unittest.TestCase):
         # When
         actual = main.solve_part_1(test_file)
         expected = 'CMZ'
+
+        # Then
+        self.assertEqual(expected, actual)
+
+    def test__solve_part_2__should_return_correct_solution(self):
+        """
+        Given the example test data solve_part_2 should return correct solution
+        """
+        # Given
+        test_file = 'data/test_input_1.txt'
+
+        # When
+        actual = main.solve_part_2(test_file)
+        expected = 'MCD'
 
         # Then
         self.assertEqual(expected, actual)

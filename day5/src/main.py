@@ -85,3 +85,12 @@ def solve_part_1(input_file):
     for container in containers:
         solution += container[-1]
     return solution
+
+def solve_part_2(input_file):
+    containers, instructions = load_data(input_file, CraneModel.CRATE_MOVER_9001)
+    for instruction in instructions:
+        instruction.perform(containers)
+    solution = ''
+    for container in containers:
+        solution += container[-1]
+    return solution
