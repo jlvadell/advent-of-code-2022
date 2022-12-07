@@ -61,5 +61,19 @@ class Day4TestCase(unittest.TestCase):
             # Then
             self.assertTrue(actual, test_case)
 
+    def test__is_overlapping__should_return_true_if_sets_have_common_items(self):
+        """
+            Given a pair of sets is_overlapping should return true if there are common items
+        """
+        # Given
+        set1 = {1,2,3,4,5,6}
+        set2 = {6,7,8,9,10}
+
+        # When
+        actual = main.is_overlapping(set1, set2)
+
+        # Then
+        self.assertTrue(actual)
+
 if __name__ == '__main__':
     unittest.main()
