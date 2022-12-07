@@ -1,7 +1,5 @@
 import unittest
 from day5.src import main
-from collections import deque
-
 
 class Day5TestCase(unittest.TestCase):
     def test_given_a_move_instruction__parse_instruction__should_return_CraneInstruction(self):
@@ -44,9 +42,9 @@ class Day5TestCase(unittest.TestCase):
         # When
         actual_containers, actual_instructions = main.load_data(input_file, main.CraneModel.CRATE_MOVER_9000)
         expected_containers = [
-            deque(['Z', 'N']),
-            deque(['M', 'C', 'D']),
-            deque(['P',])
+            ['Z', 'N'],
+            ['M', 'C', 'D'],
+            ['P',]
         ]
         expected_instructions = [
             main.CraneInstructionCrateMover9000(1, 2, 1),
@@ -58,17 +56,47 @@ class Day5TestCase(unittest.TestCase):
         self.assertEqual(expected_containers, actual_containers)
         self.assertEqual(expected_instructions, actual_instructions)
 
-    def test_given_a_set_of_containers_and_a_move_instruction__perform__should_be_able_to_execute_instruction(self):
+    def test__add_container_data__should_add_items_to_the_containers(self):
+        """
+        Given a container list and an item data list, add_container_data should append items to the correct container
+        """
+        # Given
+        containers = [['B']]
+        data = ['A', '', 'Z']
+
+        # When
+        main.add_container_data(data, containers)
+        expected = [['A','B'], [], ['Z']]
+
+        # Then
+        self.assertEqual(expected, containers)
+
+    def test_given_a_crane_model_9000__perform__should_be_able_to_execute_instruction(self):
         """
         Given an instruction it should be able to execute it on a given set of containers
         """
         # Given
-        containers = [deque(['A','B','C']), deque(['A']), deque(['A','B','C','C','B'])]
+        containers = [['A','B','C'], ['A'], ['A','B','C','C','B']]
         instruction = main.CraneInstructionCrateMover9000(2, 3, 2)
 
         # When
         instruction.perform(containers)
-        expected = [deque(['A','B','C']), deque(['A','B','C']), deque(['A','B','C'])]
+        expected = [['A','B','C'], ['A','B','C'], ['A','B','C']]
+
+        # Then
+        self.assertEqual(expected, containers)
+
+    def test_given_a_crane_model_9001__perform__should_be_able_to_execute_instruction(self):
+        """
+        Given an instruction it should be able to execute it on a given set of containers
+        """
+        # Given
+        containers = [['A','B','C'], ['A'], ['A','B','C','B','C']]
+        instruction = main.CraneInstructionCrateMover9001(2, 3, 2)
+
+        # When
+        instruction.perform(containers)
+        expected = [['A','B','C'], ['A','B','C'], ['A','B','C']]
 
         # Then
         self.assertEqual(expected, containers)

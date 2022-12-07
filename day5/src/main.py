@@ -1,4 +1,3 @@
-from collections import deque
 import re
 from enum import Enum
 
@@ -33,7 +32,7 @@ class CraneInstructionCrateMover9000(CraneInstruction):
 
 class CraneInstructionCrateMover9001(CraneInstruction):
     def perform(self, containers):
-        containers[self.destination].extend(containers[self.origin][len(containers[self.origin]) - self.qty:])
+        containers[self.destination].extend(containers[self.origin][len(containers[self.origin]) - self.qty:len(containers[self.origin])])
         containers[self.origin] = containers[self.origin][:len(containers[self.origin]) - self.qty]
 
 def load_data(input_file: str, crane_model: CraneModel):
@@ -67,9 +66,9 @@ def parse_instructions(instruction: str, crane_model: CraneModel):
 def add_container_data(data, containers):
     for i in range(0, len(data)):
         if i > len(containers) - 1:
-            containers.append(deque())
+            containers.append([])
         if data[i] != '':
-            containers[i].appendleft(data[i])
+            containers[i].insert(0, data[i])
 
 def parse_containers(container_data: str):
     parsed_data = []
