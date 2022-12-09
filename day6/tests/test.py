@@ -49,9 +49,22 @@ class Day6TestCase(unittest.TestCase):
             # Then
             self.assertEqual(expected_solution, actual)
 
+    def test__solve_part_2__should_find_correct_solution(self):
+        # Given
+        params = [
+            ['mjqjpqmgbljsphdztnvjfqwrcgsmlb', 19],
+            ['bvwbjplbgvbhsrlpgdmjqwftvncz', 23],
+            ['nppdvjthqldpwncqszvftbrmjlhg', 23],
+            ['nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg', 29],
+            ['zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw', 26],
+        ]
 
+        for text, expected_solution in params:
+            # When
+            actual = main.solve_part_2(text)
 
-
+            # Then
+            self.assertEqual(expected_solution, actual)
 
 if __name__ == '__main__':
     unittest.main()

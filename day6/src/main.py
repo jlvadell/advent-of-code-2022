@@ -18,3 +18,8 @@ def solve_part_1(text):
     seq_len = 4
     _, sequence_index = find_non_repeating_sequence(text, seq_len)
     return sequence_index
+
+def solve_part_2(text):
+    seq_len = 14
+    _, sequence_index = find_non_repeating_sequence(text, seq_len)
+    return sequence_index
