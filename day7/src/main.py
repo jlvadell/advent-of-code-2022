@@ -37,8 +37,17 @@ def add_children_to_node(current_node: Node, children: str):
         children_node = Node(children, size=0, parent=current_node)
     return children_node
 
-def find_nodes_with_size_bigger_than(root_node: Node, size: int):
-    total=0
+def find_node_closest_to(root_node: Node, size: int):
+    sizes = []
+    if root_node.size >= size:
+        sizes.append(root_node.size)
+    for children in root_node.children:
+        children_size = find_node_closest_to(children, size)
+        if children_size > 0:
+            sizes.append(children_size)
+    return min(sizes) if sizes else 0
+
+
     if (root_node.size < size):
         return 0
     else:
@@ -62,3 +71,11 @@ def trim_blank_line(line_fragment: str):
 def solve_part_1(input_file):
     root_node = parse_terminal_output(input_file)
     return find_nodes_with_size_smaller_than(root_node, 100000)
+
+def solve_part_2(input_file):
+    total_fs = 70000000
+    space_needed = 30000000
+    root_node = parse_terminal_output(input_file)
+    free_space = total_fs - root_node.size
+    space_needed = space_needed - free_space
+    return find_node_closest_to(root_node, space_needed)

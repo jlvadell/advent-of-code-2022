@@ -75,17 +75,16 @@ class Day7TestCase(unittest.TestCase):
         # Then
         self.assertEqual(expected, actual)
 
-    def test_given_terminal_output__solve_part_1__should_return_solution2(self):
+    def test_given_terminal_output__solve_part_2__should_return_solution(self):
         """
-        Given a terminal output (test_input_data) function solve_part_1 should be able to find the solution
+        Given a terminal output (test_input_data) function solve_part_2 should be able to find the solution
         """
         # Given
         input_file = 'data/test_input_1.txt'
-        root_node = main.parse_terminal_output(input_file)
+
         # When
-        actual1 = main.find_nodes_with_size_smaller_than(root_node, 100000)
-        actual = main.find_nodes_with_size_bigger_than(root_node, 100000)
-        expected = 95437
+        actual = main.solve_part_2(input_file)
+        expected = 24933642
 
         # Then
         self.assertEqual(expected, actual)
